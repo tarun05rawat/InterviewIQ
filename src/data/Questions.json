@@ -1,0 +1,316 @@
+{
+  "BEHAVIORAL QUESTIONS": [
+    {
+      "id": 1,
+      "question": "Tell me about yourself?"
+    },
+    {
+      "id": 2,
+      "question": "What gets you out of bed in the morning?"
+    },
+    {
+      "id": 3,
+      "question": "What are you most passionate about?"
+    },
+    {
+      "id": 4,
+      "question": "Tell me about your side hustle."
+    },
+    {
+      "id": 5,
+      "question": "Tell me about a time when you had to give a presentation to people who disagreed with you."
+    },
+    {
+      "id": 6,
+      "question": "Tell me about a time when you had to sell another person or team on your idea."
+    },
+    {
+      "id": 7,
+      "question": "Tell me about a time when you influenced a team."
+    },
+    {
+      "id": 8,
+      "question": "Tell me a time when you influenced engineering team to build a particular feature?"
+    },
+    {
+      "id": 9,
+      "question": "Tell me about a time when you reached a goal that was important."
+    },
+    {
+      "id": 10,
+      "question": "Tell me about a time when you went above and beyond the call of duty."
+    },
+    {
+      "id": 11,
+      "question": "Tell me about a time when you had to work across teams to accomplish something. OR Tell me about something you're proud of accomplishing."
+    },
+    {
+      "id": 12,
+      "question": "What was a time where you worked with a team and how was the experience?"
+    },
+    {
+      "id": 13,
+      "question": "How has your course work prepared you for this internship?"
+    },
+    {
+      "id": 14,
+      "question": "Why PM/Engineering/Sales/etc?"
+    },
+    {
+      "id": 15,
+      "question": "Why did you decide to move from engineering to product management (or __ to __)? (for career changers)"
+    },
+    {
+      "id": 16,
+      "question": "Where do you see yourself in five years?"
+    },
+    {
+      "id": 17,
+      "question": "Why did you choose your major?"
+    },
+    {
+      "id": 18,
+      "question": "Tell me about a time when you had to make a decision quickly or with insufficient data. OR Tell us about a time you used data to make a decision."
+    },
+    {
+      "id": 19,
+      "question": "What kind of programming experience do you have?"
+    },
+    {
+      "id": 20,
+      "question": "Describe a situation in which you went against the status quo?"
+    },
+    {
+      "id": 21,
+      "question": "What types of people have you found it difficult to work with?"
+    },
+    {
+      "id": 22,
+      "question": "How has your tolerance for mistakes changed over the years?"
+    },
+    {
+      "id": 23,
+      "question": "What kinds of people do you like to work with?"
+    },
+    {
+      "id": 24,
+      "question": "Who has inspired you in your life and why?"
+    },
+    {
+      "id": 25,
+      "question": "What would you say to your boss if he is crazy about an idea, but you think it stinks?"
+    },
+    {
+      "id": 26,
+      "question": "What motivates you to do a good job?"
+    },
+    {
+      "id": 27,
+      "question": "Looking back, what would you do differently in your life?"
+    },
+    {
+      "id": 28,
+      "question": "How do you define success and how do you measure up to your own definition?"
+    },
+    {
+      "id": 29,
+      "question": "What is something that you had to fundamentally change about yourself to be successful?"
+    },
+    {
+      "id": 30,
+      "question": "How would your teammates describe you?"
+    },
+    {
+      "id": 31,
+      "question": "What do you do in your spare time?"
+    },
+    {
+      "id": 32,
+      "question": "What's the difference between management and leadership?"
+    },
+    {
+      "id": 33,
+      "question": "Would you lie for the company?"
+    },
+    {
+      "id": 34,
+      "question": "What have you learned about saying no?"
+    },
+    {
+      "id": 35,
+      "question": "Which do you like first the good news or the bad news?"
+    },
+    {
+      "id": 36,
+      "question": "What aspects of PM do you find the least interesting and why?"
+    },
+    {
+      "id": 37,
+      "question": "What would somebody do to lose your confidence?"
+    },
+    {
+      "id": 38,
+      "question": "Tell me about a setback you had and how you handled it."
+    },
+    {
+      "id": 39,
+      "question": "What's a technology trend that you're excited about?"
+    },
+    {
+      "id": 40,
+      "question": "Do you manage people from different functions differently? If so, how?"
+    },
+    {
+      "id": 41,
+      "question": "What's your approach to hiring?"
+    },
+    {
+      "id": 42,
+      "question": "Tell me about a time you had to use emotional intelligence to lead."
+    },
+    {
+      "id": 43,
+      "question": "Tell me about a time when you showed initiative. OR Tell me about a time when you had to build a team."
+    },
+    {
+      "id": 44,
+      "question": "Tell me about a time when you had to motivate a team."
+    },
+    {
+      "id": 45,
+      "question": "Tell me about a time when you improperly analyzed a situation."
+    },
+    {
+      "id": 46,
+      "question": "Tell me about a time when you were disappointed with yourself."
+    },
+    {
+      "id": 47,
+      "question": "What is one of the worst ideas you have ever had? Biggest product mistake?"
+    },
+    {
+      "id": 48,
+      "question": "Tell me about a mistake you made. What happened, and what did you learn from it?/ Tell me about a difficult failure you experienced."
+    },
+    {
+      "id": 49,
+      "question": "Tell me about a time when you were unable to juggle all your responsibilities."
+    },
+    {
+      "id": 50,
+      "question": "What was the toughest challenge you faced? How did you overcome it?"
+    },
+    {
+      "id": 51,
+      "question": "Describe a major change that occurred in a job that you held. How did you adapt to this change?"
+    },
+    {
+      "id": 52,
+      "question": "Tell me about a time when you had to deal with changing priorities. How did you handle it?"
+    },
+    {
+      "id": 53,
+      "question": "Tell me about a time when you handled a risky situation."
+    },
+    {
+      "id": 54,
+      "question": "What was the toughest programming challenge you have ever faced?"
+    },
+    {
+      "id": 55,
+      "question": "Tell me about a time when you weren't able to reach a deadline."
+    },
+    {
+      "id": 56,
+      "question": "Who is the hardest person you ever worked with? What made the relationship difficult?"
+    },
+    {
+      "id": 57,
+      "question": "How did you address that situation? If I called them up today, what would they say about your time together?"
+    },
+    {
+      "id": 58,
+      "question": "Tell me a specific insight you gained from something outside of work."
+    },
+    {
+      "id": 59,
+      "question": "What is one of the best ideas you have ever had?"
+    },
+    {
+      "id": 60,
+      "question": "Tell me about a time when you solved a problem a creative way."
+    },
+    {
+      "id": 61,
+      "question": "Tell me about a time when you had to show innovation."
+    },
+    {
+      "id": 62,
+      "question": "What is innovation to you? Please provide an example of a project you worked on that displayed Innovative thinking/ Give me an example of your creativity."
+    },
+    {
+      "id": 63,
+      "question": "Tell me about a time when you had to make a tough decision. OR Tell me about a time when you had to compromise. OR Describe a time when you resolved a situation before it became serious."
+    },
+    {
+      "id": 64,
+      "question": "Name a time you had to make an unpopular decision."
+    },
+    {
+      "id": 65,
+      "question": "Tell me about a time when a team didn't gel. Why do you think that happened and what have you learned?"
+    },
+    {
+      "id": 66,
+      "question": "Tell me about a time when you had a challenging interaction with a coworker. OR Tell me about a time when you had to do something you didn't want to do. OR Tell me about a time when you had a disagreement at work."
+    },
+    {
+      "id": 67,
+      "question": "Tell me about a time when you mentored or aided a coworker."
+    },
+    {
+      "id": 68,
+      "question": "Is consensus always a good thing?"
+    },
+    {
+      "id": 69,
+      "question": "How do you get a team to commit to a schedule?"
+    },
+    {
+      "id": 70,
+      "question": "Tell me about a time when you had to resolve a conflict."
+    },
+    {
+      "id": 71,
+      "question": "Have you ever been in a situation where your team has let you down and you've had to take the blame?"
+    },
+    {
+      "id": 72,
+      "question": "How have you learned to work with sales?"
+    },
+    {
+      "id": 73,
+      "question": "How do you know when design is on the right track?"
+    },
+    {
+      "id": 74,
+      "question": "How should a product manager support business development?"
+    },
+    {
+      "id": 75,
+      "question": "What's the best way to work with executives?"
+    },
+    {
+      "id": 76,
+      "question": "What is the best way to interface with customers?"
+    },
+    {
+      "id": 77,
+      "question": "What makes marketing tick?"
+    },
+    {
+      "id": 78,
+      "question": "What have you learned about managing up?"
+    }
+  ]
+}
