@@ -6,7 +6,7 @@ import { Footer } from "../../components/layout/Footer";
 import AudioRecorder from "../../components/AudioRecorder";
 import { Button } from "../../components/ui/button";
 import { ArrowLeft, ArrowRight, Shuffle } from "lucide-react";
-import questionsData from "@/src/data/questions.json";
+import questionsData from "@/src/data/Questions.json";
 import { QuestionBox } from "../../components/interview/QuestionBox";
 import Gpt4ResponseBox from "../../components/Gpt4ResponseBox";
 import Loader from "../../components/Loader";
