@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Button } from "../../../components/ui/button";
+import { Card, CardHeader, CardContent } from "../../../components/ui/card";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);

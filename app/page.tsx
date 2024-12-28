@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button'
-import { Mic, Play, BookOpen } from 'lucide-react'
-import Link from 'next/link'
+import { Button } from "../components/ui/button";
+import { Mic, Play, BookOpen } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,7 +11,8 @@ export default function Home() {
             InterviewIQ
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Master your interview skills with AI-powered practice sessions. Record, review, and improve your responses.
+            Master your interview skills with AI-powered practice sessions.
+            Record, review, and improve your responses.
           </p>
         </header>
 
@@ -22,7 +23,8 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-semibold mb-2">Practice Interviews</h3>
             <p className="text-muted-foreground">
-              Record your responses to common interview questions and get instant feedback.
+              Record your responses to common interview questions and get
+              instant feedback.
             </p>
           </div>
 
@@ -42,7 +44,8 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-semibold mb-2">Learn & Grow</h3>
             <p className="text-muted-foreground">
-              Access a vast library of interview questions across different categories.
+              Access a vast library of interview questions across different
+              categories.
             </p>
           </div>
         </div>
@@ -61,5 +64,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
