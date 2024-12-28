@@ -138,7 +138,7 @@ export default function AudioRecorder({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPEN_AI_API_KEY_RESPONSE}`,
+            Authorization: `Bearer ${process.env.OPEN_AI_API_KEY_RESPONSE}`,
           },
           body: JSON.stringify({
             model: "gpt-4",
