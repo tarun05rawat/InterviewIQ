@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import AudioRecorder from "@/components/AudioRecorder";
-import { Button } from "@/components/ui/button";
+import { Header } from "../../components/layout/Header";
+import { Footer } from "../../components/layout/Footer";
+import AudioRecorder from "../../components/AudioRecorder";
+import { Button } from "../../components/ui/button";
 import { ArrowLeft, ArrowRight, Shuffle } from "lucide-react";
-import questionsData from "@/src/data/questions.json";
-import { QuestionBox } from "@/components/interview/QuestionBox";
-import Gpt4ResponseBox from "@/components/Gpt4ResponseBox";
-import Loader from "@/components/Loader";
+import questionsData from "../../src/data/questions.json";
+import { QuestionBox } from "../../components/interview/QuestionBox";
+import Gpt4ResponseBox from "../../components/Gpt4ResponseBox";
+import Loader from "../../components/Loader";
 
 export default function MainPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
