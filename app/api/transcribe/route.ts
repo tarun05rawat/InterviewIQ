@@ -8,11 +8,14 @@ const openai = new OpenAI({
 
 export async function POST(request: Request) {
   try {
+    // Parse form data
     const formData = await request.formData();
     const audioFile = formData.get("audio") as Blob;
     const question = formData.get("question") as string;
 
+    // Validate input
     if (!audioFile || !question) {
+      console.error("Missing audio file or question");
       return NextResponse.json(
         { error: "Audio file or question missing" },
         { status: 400 }
@@ -31,7 +34,10 @@ export async function POST(request: Request) {
 
     if (!transcription.text) {
       console.error("Transcription failed");
-      throw new Error("Failed to transcribe audio");
+      return NextResponse.json(
+        { error: "Failed to transcribe audio" },
+        { status: 500 }
+      );
     }
     console.log("Transcription successful:", transcription.text);
 
@@ -39,67 +45,15 @@ export async function POST(request: Request) {
     // Step 2: Behavioral Evaluation using GPT-4
     const systemPrompt = `
       You are a highly skilled interview evaluator for software engineering intern roles, specializing in behavioral questions. Your role is to provide constructive feedback on a candidate's answer to a behavioral question. 
-
       ### Objective:
-      Evaluate the response based on the following detailed criteria:
-      1. **Relevance to the Question**:
-        - Does the answer directly address the behavioral question?
-        - Are the examples or experiences provided appropriate to the question's context?
-
-      2. **Clarity and Structure**:
-        - Is the answer well-structured, concise, and easy to follow?
-        - Does the candidate demonstrate the STAR Method (Situation, Task, Action, Result) in their response?
-          - **Situation**: Did they clearly describe the context or problem they faced?
-          - **Task**: Did they explain their role or responsibilities in addressing the issue?
-          - **Action**: Did they describe the specific steps or actions they took to resolve the issue?
-          - **Result**: Did they provide measurable outcomes or results that showcase their impact?
-
-      3. **Technical and Professional Competencies**:
-        - Does the candidate use relevant technical or software engineering terms?
-        - Do they highlight skills such as problem-solving, teamwork, communication, time management, adaptability, or leadership?
-        - Are they demonstrating behaviors suitable for a professional setting?
-
-      4. **Depth and Specificity**:
-        - Does the response provide enough depth and detail to understand their experience fully?
-        - Are the examples too vague or generic, or are they specific and impactful?
-
-      5. **Improvements**:
-        - Offer suggestions for improving the answer, such as areas where they could add more detail, better align their answer with the question, or clarify their role in the situation.
-
-      6. **Overall Assessment**:
-        - Summarize the strengths of the answer.
-        - Highlight the key areas for improvement.
-        - Provide an overall evaluation of how well this answer would fare in a behavioral interview for a software engineering intern role.
-
-      ### Output Format:
-      Respond in the following format:
-
-      Question Evaluated
-      [State the question here]
-
-      Relevance
-      [Evaluate how well the answer relates to the question.]
-
-      Structure (STAR Method)
-      [Assess the clarity and use of the STAR Method.]
-
-      Technical and Professional Competencies
-      Highlight technical and behavioral skills mentioned and their relevance.]
-
-      Depth and Specificity
-      [Assess the level of detail provided.]
-
-      Suggestions for Improvement
-      [Offer actionable suggestions.]
-
-      Overall Assessment
-      [Summarize the evaluation in 1-2 sentences.]
-
-      Rating
-      [Provide a rating out of 10 based on the candidate's performance.]
-
-      Provide feedback that is clear, constructive, and actionable, ensuring the candidate understands how to improve for future interviews. Tailor your evaluation to behavioral questions commonly asked in software engineering intern roles.
-`;
+      Evaluate the response based on the following criteria:
+      1. Relevance to the question.
+      2. Clarity and structure, especially using the STAR Method.
+      3. Technical and professional competencies demonstrated.
+      4. Depth and specificity of the response.
+      5. Suggestions for improvement.
+      Provide feedback in a structured format and rate the response out of 10.
+    `;
 
     const gptResponse = await openai.chat.completions.create({
       model: "gpt-4",
@@ -112,24 +66,28 @@ export async function POST(request: Request) {
     });
 
     const evaluation =
-      gptResponse.choices?.[0]?.message?.content || "No response";
+      gptResponse.choices?.[0]?.message?.content || "No evaluation provided";
 
     console.log("GPT-4 evaluation successful");
 
+    // Return successful JSON response
     return NextResponse.json({
       transcript: transcription.text,
       evaluation: evaluation,
     });
   } catch (error) {
     console.error("Error processing request:", error);
+
     if (error instanceof APIError) {
       return NextResponse.json(
         { error: `OpenAI API error: ${error.message}` },
         { status: 500 }
       );
     }
+
+    // Generic error response
     return NextResponse.json(
-      { error: "Failed to process request" },
+      { error: "An unexpected error occurred. Please try again later." },
       { status: 500 }
     );
   }

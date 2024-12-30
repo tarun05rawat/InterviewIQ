@@ -65,15 +65,23 @@ export default function AudioRecorder({
         body: formData,
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("Content-Type");
+      const rawResponse = await response.text(); // Get raw response for logging
 
-      if (data.error) {
-        console.error("Server error:", data.error);
-        return;
+      console.log("Raw response:", rawResponse);
+
+      if (contentType && contentType.includes("application/json")) {
+        const data = JSON.parse(rawResponse); // Safely parse JSON
+        if (data.error) {
+          console.error("Server error:", data.error);
+          return;
+        }
+
+        setTranscript(data.transcript);
+        onResponseReceived(data.evaluation);
+      } else {
+        console.error("Unexpected non-JSON response:", rawResponse);
       }
-
-      setTranscript(data.transcript);
-      onResponseReceived(data.evaluation);
     } catch (error) {
       console.error("Error processing audio:", error);
     } finally {
