@@ -94,8 +94,10 @@ To deploy the application, use [Vercel](https://vercel.com/). Add the same envir
 ![Landing Page](./screenshots/landingPage.png)  
 
 
+
+
 ![Interview Simulation](./screenshots/practicePage.png)  
-_Experience a realistic interview environment with AI-generated feedback._
+
 
 ## Contributions
 
