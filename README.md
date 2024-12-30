@@ -91,11 +91,11 @@ To deploy the application, use [Vercel](https://vercel.com/). Add the same envir
 
 ## Screenshots
 
-![Interview Settings Page](./screenshots/settings-page.png)  
-_Set your interview preferences including job role, expertise, and duration._
+![Landing Page](./screenshots/landingPage.png)  
 
-![Interview Simulation](./screenshots/interview-simulation.png)  
-_Experience a realistic interview environment with AI-generated questions._
+
+![Interview Simulation](./screenshots/practicePage.png)  
+_Experience a realistic interview environment with AI-generated feedback._
 
 ## Contributions
 
