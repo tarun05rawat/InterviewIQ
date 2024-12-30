@@ -110,11 +110,3 @@ Contributions are welcome! If you’d like to contribute to this project:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-
-For questions or support, feel free to reach out:
-
-- **Author**: Tarun Rawat  
-- **GitHub**: [tarun05rawat](https://github.com/tarun05rawat)  
-- **Email**: tarun@example.com
