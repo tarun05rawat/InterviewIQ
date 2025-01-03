@@ -21,66 +21,24 @@ async function transcribeAudio(file: File) {
   return transcription.text;
 }
 
-async function evaluateResponse(question: string, transcript: string) {
-  console.log("Starting GPT-4 evaluation...");
-  const systemPrompt = `
-    You are a highly skilled interview evaluator for software engineering intern roles, specializing in behavioral questions. Your role is to provide constructive feedback on a candidate's answer to a behavioral question. 
-    ### Objective:
-    Evaluate the response based on the following criteria:
-    1. Relevance to the question.
-    2. Clarity and structure, especially using the STAR Method.
-    3. Technical and professional competencies demonstrated.
-    4. Depth and specificity of the response.
-    5. Suggestions for improvement.
-    Provide feedback in a structured format and rate the response out of 10.
-  `;
-
-  const gptResponse = await openai.chat.completions.create({
-    model: "gpt-4",
-    messages: [
-      { role: "system", content: systemPrompt },
-      { role: "user", content: `Question: ${question}` },
-      { role: "user", content: `Transcript: ${transcript}` },
-    ],
-    temperature: 0.3,
-  });
-
-  const evaluation =
-    gptResponse.choices?.[0]?.message?.content || "No evaluation provided";
-
-  console.log("GPT-4 evaluation successful");
-  return evaluation;
-}
-
 export async function POST(request: Request) {
   try {
-    // Parse form data
     const formData = await request.formData();
     const audioFile = formData.get("audio") as Blob;
-    const question = formData.get("question") as string;
 
-    // Validate input
-    if (!audioFile || !question) {
-      console.error("Missing audio file or question");
+    if (!audioFile) {
+      console.error("Missing audio file");
       return NextResponse.json(
-        { error: "Audio file or question missing" },
+        { error: "Audio file missing" },
         { status: 400 }
       );
     }
 
-    // Convert Blob to File object for Whisper
     const file = new File([audioFile], "audio.webm", { type: "audio/webm" });
-
-    // Transcribe audio
     const transcript = await transcribeAudio(file);
 
-    // Evaluate response
-    const evaluation = await evaluateResponse(question, transcript);
-
-    // Return successful JSON response
     return NextResponse.json({
       transcript: transcript,
-      evaluation: evaluation,
     });
   } catch (error) {
     console.error("Error processing request:", error);
@@ -92,7 +50,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Generic error response
     return NextResponse.json(
       { error: "An unexpected error occurred. Please try again later." },
       { status: 500 }

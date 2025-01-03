@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { VoiceButton } from "@/components/interview/VoiceButton";
 import Loader from "@/components/Loader";
+import Gpt4ResponseBox from "@/components/Gpt4ResponseBox"; // Import the Gpt4ResponseBox component
 
 export default function AudioRecorder({
   currentQuestion,
@@ -13,6 +14,7 @@ export default function AudioRecorder({
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [evaluation, setEvaluation] = useState("");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
 
@@ -58,7 +60,6 @@ export default function AudioRecorder({
       setIsLoading(true);
       const formData = new FormData();
       formData.append("audio", audioBlob);
-      formData.append("question", currentQuestion);
 
       const response = await fetch("/api/transcribe", {
         method: "POST",
@@ -78,14 +79,47 @@ export default function AudioRecorder({
         }
 
         setTranscript(data.transcript);
-        onResponseReceived(data.evaluation); // Directly use the evaluation from the response
+        setIsLoading(false);
+
+        // Start evaluation asynchronously
+        handleEvaluation(data.transcript);
       } else {
         console.error("Unexpected non-JSON response:", rawResponse);
       }
     } catch (error) {
       console.error("Error during transcription:", error);
-    } finally {
-      setIsLoading(false);
+    }
+  };
+
+  const handleEvaluation = async (transcript: string) => {
+    try {
+      const response = await fetch("/api/evaluate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: currentQuestion, transcript }),
+      });
+
+      const contentType = response.headers.get("Content-Type");
+      const rawResponse = await response.text();
+
+      console.log("Raw evaluation response:", rawResponse);
+
+      if (contentType && contentType.includes("application/json")) {
+        const data = JSON.parse(rawResponse);
+        if (data.error) {
+          console.error("Evaluation error:", data.error);
+          return;
+        }
+
+        setEvaluation(data.evaluation);
+        onResponseReceived(data.evaluation);
+      } else {
+        console.error("Unexpected non-JSON response:", rawResponse);
+      }
+    } catch (error) {
+      console.error("Error during evaluation:", error);
     }
   };
 
