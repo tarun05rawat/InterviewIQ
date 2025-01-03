@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { VoiceButton } from "@/components/interview/VoiceButton";
 import Loader from "@/components/Loader";
-import Gpt4ResponseBox from "@/components/Gpt4ResponseBox"; // Import the Gpt4ResponseBox component
 
 export default function AudioRecorder({
   currentQuestion,
@@ -14,6 +13,7 @@ export default function AudioRecorder({
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isEvaluating, setIsEvaluating] = useState(false);
   const [evaluation, setEvaluation] = useState("");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -93,6 +93,7 @@ export default function AudioRecorder({
 
   const handleEvaluation = async (transcript: string) => {
     try {
+      setIsEvaluating(true);
       const response = await fetch("/api/evaluate", {
         method: "POST",
         headers: {
@@ -120,6 +121,8 @@ export default function AudioRecorder({
       }
     } catch (error) {
       console.error("Error during evaluation:", error);
+    } finally {
+      setIsEvaluating(false);
     }
   };
 
@@ -151,7 +154,11 @@ export default function AudioRecorder({
             ? "Processing..."
             : transcript || "Transcription will appear here..."}
         </p>
+        {isEvaluating && (
+          <p className="text-gray-500 mt-2">Evaluating response...</p>
+        )}
       </Card>
+      {isEvaluating && <Loader />}
       {isLoading && <Loader />}
     </div>
   );
