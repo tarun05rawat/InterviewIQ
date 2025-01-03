@@ -43,7 +43,7 @@ export default function AudioRecorder({
     return new Promise<void>((resolve) => {
       mediaRecorder.onstop = async () => {
         const audioBlob = new Blob(chunksRef.current, { type: "audio/webm" });
-        await handleTranscriptionAndEvaluation(audioBlob);
+        await handleTranscription(audioBlob);
         resolve();
       };
 
@@ -53,7 +53,7 @@ export default function AudioRecorder({
     });
   };
 
-  const handleTranscriptionAndEvaluation = async (audioBlob: Blob) => {
+  const handleTranscription = async (audioBlob: Blob) => {
     try {
       setIsLoading(true);
       const formData = new FormData();
@@ -66,24 +66,24 @@ export default function AudioRecorder({
       });
 
       const contentType = response.headers.get("Content-Type");
-      const rawResponse = await response.text(); // Get raw response for logging
+      const rawResponse = await response.text();
 
-      console.log("Raw response:", rawResponse);
+      console.log("Raw transcription response:", rawResponse);
 
       if (contentType && contentType.includes("application/json")) {
-        const data = JSON.parse(rawResponse); // Safely parse JSON
+        const data = JSON.parse(rawResponse);
         if (data.error) {
-          console.error("Server error:", data.error);
+          console.error("Transcription error:", data.error);
           return;
         }
 
         setTranscript(data.transcript);
-        onResponseReceived(data.evaluation);
+        onResponseReceived(data.evaluation); // Directly use the evaluation from the response
       } else {
         console.error("Unexpected non-JSON response:", rawResponse);
       }
     } catch (error) {
-      console.error("Error processing audio:", error);
+      console.error("Error during transcription:", error);
     } finally {
       setIsLoading(false);
     }
