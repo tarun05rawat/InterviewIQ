@@ -14,8 +14,8 @@ InterviewIQ is an AI-powered interview preparation platform designed to simulate
 
 ## Technologies Used
 
-- **Frontend**: React, Next.js, Tailwind CSS
-- **Backend**: Node.js, Express.js
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Node.js
 - **AI Engine**: OpenAI API for natural language processing and evaluation
 - **Database**: MongoDB
 - **Hosting**: Vercel
