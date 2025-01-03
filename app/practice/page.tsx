@@ -14,7 +14,7 @@ import Loader from "../../components/Loader";
 export default function MainPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [gptResponse, setGptResponse] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State to track loading
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNext = () => {
     if (
@@ -22,6 +22,7 @@ export default function MainPage() {
       questionsData["BEHAVIORAL QUESTIONS"].length - 1
     ) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      resetState();
     } else {
       console.log("No more questions");
     }
@@ -30,6 +31,7 @@ export default function MainPage() {
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
+      resetState();
     } else {
       console.log("This is the first question");
     }
@@ -40,6 +42,12 @@ export default function MainPage() {
       Math.random() * questionsData["BEHAVIORAL QUESTIONS"].length
     );
     setCurrentQuestionIndex(randomIndex);
+    resetState();
+  };
+
+  const resetState = () => {
+    setGptResponse("");
+    setIsLoading(false);
   };
 
   const handleGptResponse = (response: string) => {
@@ -80,18 +88,22 @@ export default function MainPage() {
           </Button>
         </div>
 
-        {/* Integrate the AudioRecorder component */}
         <AudioRecorder
+          key={`audio-${currentQuestionIndex}`} // Unique key to force re-render
           currentQuestion={
             questionsData["BEHAVIORAL QUESTIONS"][currentQuestionIndex].question
           }
           onResponseReceived={handleGptResponse}
         />
-        {/* Conditionally render the loader or the GPT-4 response */}
         {isLoading ? (
-          <Loader /> // Render the loader when waiting for response
+          <Loader />
         ) : (
-          gptResponse && <Gpt4ResponseBox response={gptResponse} />
+          gptResponse && (
+            <Gpt4ResponseBox
+              key={`response-${currentQuestionIndex}`} // Unique key to force re-render
+              response={gptResponse}
+            />
+          )
         )}
       </main>
       <Footer />
